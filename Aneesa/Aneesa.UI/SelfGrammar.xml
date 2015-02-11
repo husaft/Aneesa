@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<grammar version="1.0" xml:lang="en-US" tag-format="semantics/1.0"
+         xmlns="http://www.w3.org/2001/06/grammar"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         root="TellName">
+	
+	<rule id="TellName" scope="public">
+		<one-of>
+			<item>Who are you?</item>
+			<item>What's your name?</item>
+		</one-of>
+	</rule>
+
+</grammar>

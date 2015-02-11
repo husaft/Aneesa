@@ -45,7 +45,7 @@
         	this.statusText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
         	this.statusText.Location = new System.Drawing.Point(12, 146);
         	this.statusText.Name = "statusText";
-        	this.statusText.Size = new System.Drawing.Size(270, 20);
+        	this.statusText.Size = new System.Drawing.Size(270, 70);
         	this.statusText.TabIndex = 2;
         	this.statusText.Text = "What\'s up, yo?";
         	this.statusText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
