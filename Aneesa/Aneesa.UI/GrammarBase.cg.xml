@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<grammar version="1.0" mode="voice" tag-format="semantics/1.0"
+         xmlns="http://www.w3.org/2001/06/grammar"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xml:lang="en-US">
+	
+	<rule id="TellName" scope="public">
+		<one-of>
+			<item>Who are you?</item>
+			<item>What's your name?</item>
+		</one-of>
+	</rule>
+	
+	<rule id="TellClock" scope="public">
+		<item>What time is it?</item>
+	</rule>
+	
+	<rule id="TellLogon" scope="public">
+		<item>When did I start my computer?</item>
+	</rule>
+	
+	<rule id="TellRunning" scope="public">
+		<item>How long is my computer on?</item>
+	</rule>
+	
+	<rule id="TellWinVer" scope="public">
+		<item>Which operating system do I have?</item>
+	</rule>
+	
+	<rule id="TellCPUs" scope="public">
+		<item>How many CPUs do you use?</item>
+	</rule>
+	
+	<rule id="TellSpace" scope="public">
+		<item>How much disk space do I have?</item>
+	</rule>
+	
+	<rule id="TellUser" scope="public">
+		<item>What is my username?</item>
+	</rule>
+
+</grammar>
