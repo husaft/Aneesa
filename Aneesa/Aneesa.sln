@@ -1,11 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
+# Visual Studio 2012
+# SharpDevelop 4.4
 VisualStudioVersion = 14.0.22310.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aneesa.Incubator", "Aneesa.Incubator\Aneesa.Incubator.csproj", "{415F19B6-AF6D-46BA-BB2F-DB21D7FBB8B2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aneesa.UI", "Aneesa.UI\Aneesa.UI.csproj", "{BDC2465A-D89F-4DB5-B7E9-A6A29D81910C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aneesa.API", "Aneesa.API\Aneesa.API.csproj", "{6F87A03E-9450-4ED4-903F-5F6D46B4C087}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aneesa.Win", "Aneesa.Win\Aneesa.Win.csproj", "{2E0DD2ED-DBAF-4408-92E1-6F91C9911407}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +26,14 @@ Global
 		{BDC2465A-D89F-4DB5-B7E9-A6A29D81910C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDC2465A-D89F-4DB5-B7E9-A6A29D81910C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDC2465A-D89F-4DB5-B7E9-A6A29D81910C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F87A03E-9450-4ED4-903F-5F6D46B4C087}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F87A03E-9450-4ED4-903F-5F6D46B4C087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F87A03E-9450-4ED4-903F-5F6D46B4C087}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F87A03E-9450-4ED4-903F-5F6D46B4C087}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E0DD2ED-DBAF-4408-92E1-6F91C9911407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E0DD2ED-DBAF-4408-92E1-6F91C9911407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E0DD2ED-DBAF-4408-92E1-6F91C9911407}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E0DD2ED-DBAF-4408-92E1-6F91C9911407}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

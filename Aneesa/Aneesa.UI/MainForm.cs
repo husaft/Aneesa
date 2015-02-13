@@ -13,6 +13,8 @@ using System.Speech.Synthesis;
 using System.Text;
 using System.Windows.Forms;
 
+using Aneesa.Win;
+
 namespace Aneesa.UI
 {
 	public partial class MainForm : Form
@@ -21,7 +23,8 @@ namespace Aneesa.UI
 		private SpeechSynthesizer synthesizer;
 		private CultureInfo culture;
 		private StringBuilder currentlySpoken;
-
+		private StartMenuGrammar smg;
+		
 		public MainForm()
 		{
 			InitializeComponent();
@@ -52,6 +55,8 @@ namespace Aneesa.UI
 			var grammars = srgsDocs.SelectMany(d => d.Rules.Where(r => r.Scope == SrgsRuleScope.Public)
 			                                   .Select(pr => new Grammar(d, pr.Id))).ToArray();
 			Array.ForEach(grammars, g => recognizer.LoadGrammarAsync(g));
+			// Generate on-the-fly grammars
+			recognizer.LoadGrammarAsync(new Grammar((smg = new StartMenuGrammar()).GenerateGrammar()));
 			// Greet the user
 			Speak(SpeakResource.Welcome);
 		}
@@ -95,6 +100,11 @@ namespace Aneesa.UI
 					TellUser();
 					break;
 				default:
+					if (ruleName == smg.RuleName) 
+					{
+						smg.OnRecognize(result.Text, s => Speak(s));
+						break;
+					}
 					Speak(SpeakResource.Sorry);
 					break;
 			}
