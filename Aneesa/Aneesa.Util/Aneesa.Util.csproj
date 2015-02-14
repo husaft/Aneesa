@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
-    <ProjectGuid>{2E0DD2ED-DBAF-4408-92E1-6F91C9911407}</ProjectGuid>
+    <ProjectGuid>{BCA53214-009E-4332-A122-431CC82C0B91}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <OutputType>Library</OutputType>
-    <RootNamespace>Aneesa.Win</RootNamespace>
-    <AssemblyName>Aneesa.Win</AssemblyName>
+    <RootNamespace>Aneesa.Util</RootNamespace>
+    <AssemblyName>Aneesa.Util</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
   </PropertyGroup>
@@ -30,29 +30,13 @@
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IWshRuntimeLibrary">
-      <HintPath>..\libs\IWshRuntimeLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Speech">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Equality.cs" />
+    <Compile Include="LinqEqualityComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StartMenuGrammar.cs" />
-    <Compile Include="StartMenuLink.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Aneesa.API\Aneesa.API.csproj">
-      <Project>{6F87A03E-9450-4ED4-903F-5F6D46B4C087}</Project>
-      <Name>Aneesa.API</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Aneesa.Util\Aneesa.Util.csproj">
-      <Project>{BCA53214-009E-4332-A122-431CC82C0B91}</Project>
-      <Name>Aneesa.Util</Name>
-    </ProjectReference>
+    <Compile Include="SafeHelpers.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

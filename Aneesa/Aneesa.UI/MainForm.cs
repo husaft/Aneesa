@@ -13,6 +13,7 @@ using System.Speech.Synthesis;
 using System.Text;
 using System.Windows.Forms;
 
+using Aneesa.Util;
 using Aneesa.Win;
 
 namespace Aneesa.UI
@@ -56,7 +57,9 @@ namespace Aneesa.UI
 			                                   .Select(pr => new Grammar(d, pr.Id))).ToArray();
 			Array.ForEach(grammars, g => recognizer.LoadGrammarAsync(g));
 			// Generate on-the-fly grammars
-			recognizer.LoadGrammarAsync(new Grammar((smg = new StartMenuGrammar()).GenerateGrammar()));
+			smg = new StartMenuGrammar();
+			var onTheFly = smg.GenerateGrammar().ToArray();
+			Array.ForEach(onTheFly, d => recognizer.LoadGrammarAsync(new Grammar(d)));
 			// Greet the user
 			Speak(SpeakResource.Welcome);
 		}
@@ -100,9 +103,9 @@ namespace Aneesa.UI
 					TellUser();
 					break;
 				default:
-					if (ruleName == smg.RuleName) 
+					if (smg.RuleNames.Contains(ruleName))
 					{
-						smg.OnRecognize(result.Text, s => Speak(s));
+						smg.OnRecognize(ruleName, result.Text, s => Speak(s));
 						break;
 					}
 					Speak(SpeakResource.Sorry);
@@ -177,17 +180,7 @@ namespace Aneesa.UI
 		
 		private static DateTime GetLogonTime()
 		{
-			return Process.GetProcesses().Select(p => GetStartTime(p)).Min().GetValueOrDefault();
-		}
-		
-		private static DateTime? GetStartTime(Process proc)
-		{
-			try
-			{
-				return proc.StartTime;
-			} catch (Win32Exception) {
-				return null;
-			}
+			return Process.GetProcesses().Select(p => SafeHelpers.GetStartTimeSafe(p)).Min().GetValueOrDefault();
 		}
 		#endregion
 		

@@ -110,6 +110,10 @@
       <Project>{6F87A03E-9450-4ED4-903F-5F6D46B4C087}</Project>
       <Name>Aneesa.API</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Aneesa.Util\Aneesa.Util.csproj">
+      <Project>{BCA53214-009E-4332-A122-431CC82C0B91}</Project>
+      <Name>Aneesa.Util</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Aneesa.Win\Aneesa.Win.csproj">
       <Project>{2E0DD2ED-DBAF-4408-92E1-6F91C9911407}</Project>
       <Name>Aneesa.Win</Name>

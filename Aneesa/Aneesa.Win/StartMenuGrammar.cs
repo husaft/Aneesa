@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Speech.Recognition.SrgsGrammar;
 
 using Aneesa.API;
+using Aneesa.Util;
 using IWshRuntimeLibrary;
 
 namespace Aneesa.Win
@@ -16,6 +17,7 @@ namespace Aneesa.Win
 	{
 		private readonly WshShell shell;
 		private readonly string openPrefix;
+		private readonly string closePrefix;
 		
 		private IDictionary<string, string> lnkDict;
 		
@@ -23,10 +25,11 @@ namespace Aneesa.Win
 		{
 			shell = new WshShell();
 			openPrefix = "Open ";
-			RuleName = "OpenApp";
+			closePrefix = "Close ";
+			RuleNames = new [] { "OpenApp", "CloseApp" };
 		}
 		
-		public SrgsDocument GenerateGrammar()
+		public IEnumerable<SrgsDocument> GenerateGrammar()
 		{
 			// Get all interesting special folders
 			var myStartMenu = Environment.GetFolderPath(Environment.SpecialFolder.StartMenu);
@@ -39,14 +42,21 @@ namespace Aneesa.Win
 			// Extract information from link files
 			var lnks = ExtractStartMenuLinks(shell, lnkFiles).Distinct();
 			lnkDict = lnks.ToDictionary(k => k.Name, v => v.Path);
-			// Create rule
+			// Create rule for opening
 			var keys = lnkDict.Keys.OrderBy(k => k).ToArray();
-			var root = new SrgsRule(RuleName, new SrgsItem(openPrefix), new SrgsOneOf(keys));
-			root.Scope = SrgsRuleScope.Public;
-			// Create document
-			var doc = new SrgsDocument(root);
-			doc.Mode = SrgsGrammarMode.Voice;
-			return doc;
+			var oRoot = new SrgsRule(RuleNames.First(), new SrgsItem(openPrefix), new SrgsOneOf(keys));
+			oRoot.Scope = SrgsRuleScope.Public;
+			// Create rule for closing
+			var cRoot = new SrgsRule(RuleNames.Last(), new SrgsItem(closePrefix), new SrgsOneOf(keys));
+			cRoot.Scope = SrgsRuleScope.Public;
+			// Create document for opening
+			var oDoc = new SrgsDocument(oRoot);
+			oDoc.Mode = SrgsGrammarMode.Voice;
+			yield return oDoc;
+			// Create document for closing
+			var cDoc = new SrgsDocument(cRoot);
+			cDoc.Mode = SrgsGrammarMode.Voice;
+			yield return cDoc;
 		}
 		
 		#region Helpers
@@ -77,16 +87,44 @@ namespace Aneesa.Win
 		}
 		#endregion
 		
-		public string RuleName { get; private set; }
+		public IEnumerable<string> RuleNames { get; private set; }
 		
-		public void OnRecognize(string text, Action<string> speaker)
+		public void OnRecognize(string ruleName, string text, Action<string> speaker)
 		{
-			var app = text.Replace(openPrefix, string.Empty).Trim();
-			string path;
-			if (!lnkDict.TryGetValue(app, out path))
+			if (ruleName == RuleNames.First())
+			{
+				var app = text.Replace(openPrefix, string.Empty).Trim();
+				string path;
+				if (!lnkDict.TryGetValue(app, out path))
+					return;
+				Process.Start(path);
+				speaker(string.Format("Started {0}.", app));
 				return;
-			Process.Start(path);
-			speaker(string.Format("Started {0} for you.", app));
+			}
+			if (ruleName == RuleNames.Last())
+			{
+				var app = text.Replace(closePrefix, string.Empty).Trim();
+				string path;
+				if (!lnkDict.TryGetValue(app, out path))
+					return;
+				var proc = Process.GetProcesses().OrderByDescending(p => SafeHelpers.GetStartTimeSafe(p)).FirstOrDefault(
+					p => {
+						var mod = SafeHelpers.GetModulesSafe(p).FirstOrDefault();
+						return mod == null ? false
+							: mod.FileName == path ? true
+							: Path.GetFileName(mod.FileName) == Path.GetFileName(path);
+					});
+				if (proc == null)
+				{
+					speaker(string.Format("Couldn't find {0}!", app));
+					return;
+				}
+				SafeHelpers.TrySafe(() => proc.CloseMainWindow());
+				SafeHelpers.TrySafe(() => proc.Close());
+				SafeHelpers.TrySafe(() => proc.Kill());
+				speaker(string.Format("Closed {0}.", app));
+				return;
+			}
 		}
 	}
 }

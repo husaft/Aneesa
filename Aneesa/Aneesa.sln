@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aneesa.API", "Aneesa.API\An
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aneesa.Win", "Aneesa.Win\Aneesa.Win.csproj", "{2E0DD2ED-DBAF-4408-92E1-6F91C9911407}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aneesa.Util", "Aneesa.Util\Aneesa.Util.csproj", "{BCA53214-009E-4332-A122-431CC82C0B91}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,10 @@ Global
 		{2E0DD2ED-DBAF-4408-92E1-6F91C9911407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2E0DD2ED-DBAF-4408-92E1-6F91C9911407}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2E0DD2ED-DBAF-4408-92E1-6F91C9911407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCA53214-009E-4332-A122-431CC82C0B91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCA53214-009E-4332-A122-431CC82C0B91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCA53214-009E-4332-A122-431CC82C0B91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCA53214-009E-4332-A122-431CC82C0B91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

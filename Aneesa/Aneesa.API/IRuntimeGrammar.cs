@@ -7,10 +7,10 @@ namespace Aneesa.API
 {
 	public interface IRuntimeGrammar
 	{
-		SrgsDocument GenerateGrammar();
+		IEnumerable<SrgsDocument> GenerateGrammar();
 		
-		string RuleName { get; }
+		IEnumerable<string> RuleNames { get; }
 		
-		void OnRecognize(string text, Action<string> speaker);
+		void OnRecognize(string ruleName, string text, Action<string> speaker);
 	}
 }
