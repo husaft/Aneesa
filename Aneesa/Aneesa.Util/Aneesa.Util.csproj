@@ -34,6 +34,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Equality.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="LinqEqualityComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SafeHelpers.cs" />

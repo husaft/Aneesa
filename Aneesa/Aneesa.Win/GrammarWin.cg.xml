@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<grammar version="1.0" mode="voice" tag-format="semantics/1.0"
+         xmlns="http://www.w3.org/2001/06/grammar"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xml:lang="en-US">
+	
+	<rule id="ShowFiles" scope="public">
+		<item>Show me my files of </item>
+		<one-of>
+			<item>today</item>
+			<item>yesterday</item>
+			<item>last week</item>
+			<item>last fortnight</item>
+			<item>last month</item>
+		</one-of>
+	</rule>
+
+</grammar>

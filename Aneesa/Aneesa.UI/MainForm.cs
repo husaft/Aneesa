@@ -25,6 +25,7 @@ namespace Aneesa.UI
 		private CultureInfo culture;
 		private StringBuilder currentlySpoken;
 		private StartMenuGrammar smg;
+		private WinSearchGrammar wsg;
 		
 		public MainForm()
 		{
@@ -57,8 +58,9 @@ namespace Aneesa.UI
 			                                   .Select(pr => new Grammar(d, pr.Id))).ToArray();
 			Array.ForEach(grammars, g => recognizer.LoadGrammarAsync(g));
 			// Generate on-the-fly grammars
-			smg = new StartMenuGrammar();
-			var onTheFly = smg.GenerateGrammar().ToArray();
+			smg = new StartMenuGrammar();		
+			wsg = new WinSearchGrammar();
+			var onTheFly = smg.GenerateGrammar().Concat(wsg.GenerateGrammar()).ToArray();
 			Array.ForEach(onTheFly, d => recognizer.LoadGrammarAsync(new Grammar(d)));
 			// Greet the user
 			Speak(SpeakResource.Welcome);
@@ -106,6 +108,11 @@ namespace Aneesa.UI
 					if (smg.RuleNames.Contains(ruleName))
 					{
 						smg.OnRecognize(ruleName, result.Text, s => Speak(s));
+						break;
+					}
+					if (wsg.RuleNames.Contains(ruleName))
+					{
+						wsg.OnRecognize(ruleName, result.Text, s => Speak(s));
 						break;
 					}
 					Speak(SpeakResource.Sorry);
