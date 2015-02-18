@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<grammar version="1.0" mode="voice" tag-format="semantics/1.0"
+         xmlns="http://www.w3.org/2001/06/grammar"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xml:lang="en-US">
+	
+	<rule id="SetTimer" scope="public">
+		<item>Remind me in </item>
+		<one-of>
+			<item>two</item>
+			<item>five</item>
+			<item>ten</item>
+		</one-of>
+		<item> minutes</item>
+	</rule>
+
+</grammar>

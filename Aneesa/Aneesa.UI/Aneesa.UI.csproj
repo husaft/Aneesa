@@ -75,6 +75,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SpeakResource.resx</DependentUpon>
     </Compile>
+    <Compile Include="TimerGrammar.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -93,6 +94,9 @@
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="GrammarBase.cg.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="GrammarTimer.cg.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">
